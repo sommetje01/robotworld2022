@@ -39,7 +39,7 @@ namespace Application
 	 *
 	 */
 	MainFrameWindow::MainFrameWindow( const std::string& aTitle) :
-								Frame( nullptr, DEFAULT_ID, WXSTRING( aTitle), DefaultPosition, Size( 1200, 600)),
+								Frame( nullptr, DEFAULT_ID, WXSTRING( aTitle), DefaultPosition, Size( 1024, 1024)),
 								clientPanel( nullptr),
 								menuBar( nullptr),
 								splitterWindow( nullptr),
@@ -284,6 +284,11 @@ namespace Application
 								[this](CommandEvent &anEvent){this->OnStopListening(anEvent);}),
 					GBPosition( 2, 2),
 					GBSpan( 1, 1), EXPAND);
+		sizer->Add( makeButton( panel,
+								"Switch filter",
+								[this](CommandEvent &anEvent){this->SwitchFilter(anEvent);}),
+					GBPosition( 3, 0),
+					GBSpan( 1, 1), EXPAND);
 
 		panel->SetSizerAndFit( sizer);
 
@@ -352,7 +357,7 @@ namespace Application
 	 */
 	void MainFrameWindow::OnPopulate( CommandEvent& UNUSEDPARAM(anEvent))
 	{
-		robotWorldCanvas->populate( 2);
+		robotWorldCanvas->populate( 4);
 	}
 	/**
 	 *
@@ -411,5 +416,14 @@ namespace Application
 		{
 			robot->stopCommunicating();
 		}
+	}
+
+
+	void MainFrameWindow::SwitchFilter(CommandEvent& UNUSEDPARAM(anEvent)){
+		Model::RobotPtr robot = Model::RobotWorld::getRobotWorld().getRobot( "Robot");
+				if (robot)
+				{
+					robot->switchFilter();
+				}
 	}
 } // namespace Application

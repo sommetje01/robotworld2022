@@ -1,14 +1,13 @@
 #include "RobotShape.hpp"
-
-#include "Goal.hpp"
-#include "Logger.hpp"
+#include <cmath>
 #include "Notifier.hpp"
 #include "Robot.hpp"
-#include "RobotWorld.hpp"
+#include "Goal.hpp"
+#include "Logger.hpp"
 #include "RobotWorldCanvas.hpp"
+#include "RobotWorld.hpp"
 #include "Shape2DUtils.hpp"
-
-#include <cmath>
+#include <iostream>
 
 namespace View
 {
@@ -148,6 +147,28 @@ namespace View
 		// with the front of the robot, while text centre being displayed in the
 		// centre of the robot, bottom of the text to the back of the robot.
 		dc.DrawRotatedText( WXSTRING( title), centre.x - titleSize.x / 2, centre.y - titleSize.y / 2, angle - Utils::PI);
+
+		if (getRobot()->getCurrentFilter() == 0 && getRobot()->getcreateParticlesDone()) {
+			unsigned short nParticles = 10; // normaal 200 maar 10 is sneller
+			for (unsigned short i = 0; i<nParticles; ++i)
+			{
+				unsigned short x = getRobot()->getParticles()[0].posX;
+				unsigned short y = getRobot()->getParticles()[0].posY;
+				dc.DrawRectangle( x, y, 5, 5);
+			}
+			std::vector<std::vector<int>> particleRoute = getRobot()->getparticleRoute();
+			dc.SetPen( wxPen( WXSTRING( "BLUE"), 1, wxPENSTYLE_SOLID));
+			for (int i = 1; i < particleRoute.size(); i++)
+			{
+				dc.DrawLine(particleRoute[i-1].at(0), particleRoute[i-1].at(1), particleRoute[i].at(0), particleRoute[i].at(1));
+				}
+			std::vector<std::vector<int>> werkelijkeRoute = getRobot()->getwerkelijkeRoute();
+			dc.SetPen( wxPen( WXSTRING( "GREEN"), 1, wxPENSTYLE_SOLID));
+			for (unsigned short i = 1; i < werkelijkeRoute.size(); ++i)
+			{
+			dc.DrawLine(werkelijkeRoute[i-1].at(0), werkelijkeRoute[i-1].at(1), werkelijkeRoute[i].at(0), werkelijkeRoute[i].at(1));
+			}
+		}
 	}
 	/**
 	 *

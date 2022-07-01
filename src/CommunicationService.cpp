@@ -211,7 +211,7 @@ namespace Messaging
 		{
 			try
 			{
-				auto work = boost::asio::require(io_context.get_executor(), boost::asio::execution::outstanding_work.tracked);
+//				auto work = boost::asio::require(io_context.get_executor(), boost::asio::execution::outstanding_work.tracked);
 				io_context.run();
 				break;
 			}

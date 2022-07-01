@@ -1,8 +1,5 @@
 /* src/config.h.in.  Generated from configure.ac by autoheader.  */
 
-/* "" */
-#undef BOOST_TIMER_LIBS
-
 /* Defined if the requested minimum BOOST version is satisfied */
 #undef HAVE_BOOST
 

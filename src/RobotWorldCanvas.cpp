@@ -455,7 +455,7 @@ namespace View
 	 */
 	void RobotWorldCanvas::initialise()
 	{
-		SetMinSize( Size( 500, 500));
+		SetMinSize( Size( 1024, 1024));
 
 		notificationHandler = new Base::NotificationHandler< std::function< void( NotifyEvent&) > >( [this](NotifyEvent& anEvent){this->OnNotificationEvent(anEvent);});
 		PushEventHandler( notificationHandler);
@@ -499,9 +499,9 @@ namespace View
 	{
 		for (ShapePtr shape : shapes)
 		{
-			//		Logger::log("Drawing shape: " + shape->asString());
+//					Logger::log("Drawing shape: " + shape->asString());
 			shape->draw( dc);
-			//		Logger::log("Done drawing shape: " + shape->asString());
+//					Logger::log("Done drawing shape: " + shape->asString());
 		}
 		if (startActionShape != nullptr && actionStatus == DRAWING)
 		{

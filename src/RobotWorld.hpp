@@ -126,7 +126,7 @@ namespace Model
 			/**
 			 *
 			 */
-			void populate( int aNumberOfWalls = 2);
+			void populate( int aNumberOfWalls);
 			/**
 			 *
 			 */

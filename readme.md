@@ -125,7 +125,7 @@ a project in Eclipse.
     "`C++ Managed Build`" and click "`Next`"(do not use the CMake or
     other *make* projects).
 
-2.  In the next step ("`Create C++ project of selected type`"\*) do the
+2.  In the next step ("`Create C++ project of selected type`"\*) doe the
     following:
 
     a.  Give the project a name
@@ -183,9 +183,3 @@ Remarks:
 
 -   Change the `C/C++ Application` launch target to `robotworld.exe` in
     the (hidden) folder `.libs`.
-    
-### Using Sanitizers
-
-- If you compile with "-fsanitize=address -fsanitize=leak -fsanitize=undefined" you must link with "-fsanitize=address -fsanitize=leak -fsanitize=undefined" for linking with the correct libraries.
-- If your IDE does not support that you can link with asan en usan (in that order!)
-- If the LeakSanitizer gives false positives you can add those (after careful inspection!!!) to the LeakSanitizerSuppression.txt

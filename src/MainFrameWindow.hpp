@@ -92,6 +92,8 @@ namespace Application
 			void OnStartListening( CommandEvent& anEvent);
 			void OnSendMessage( CommandEvent& anEvent);
 			void OnStopListening( CommandEvent& anEvent);
+			void SwitchFilter( CommandEvent& anEvent);
+
 	};
 	//	class MainFrameWindow
 } //namespace Application
